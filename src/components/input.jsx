@@ -15,13 +15,12 @@ export default function Input() {
       return;
     }
 
-    const URL = import.meta.env.VITE_API;
     setLoading(true);
     try {
       const endpoint = type === "playlist" ? "/playlist" : "/download";
 
       const response = await axios.post(
-        `${URL}${endpoint}`,
+        `http://217.154.100.207:3000${endpoint}`,
         { url },
         {
           headers: {
