@@ -90,7 +90,7 @@ export default function Input() {
 
       <div className="flex flex-col justify-center items-center min-h-screen bg-black px-4">
         <h1 className="text-3xl font-bold mb-6 text-white text-center">
-          Convertidor MP3
+          Convertidor YouTube a MP3
         </h1>
         <p className="text-white max-w-2xl text-center text-lg mb-8 leading-relaxed">
           Convierte videos y playlist de YouTube a MP3 de forma rápida, gratuita
