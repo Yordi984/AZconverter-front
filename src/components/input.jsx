@@ -93,10 +93,10 @@ export default function Input() {
           Convertidor MP3
         </h1>
         <p className="text-white max-w-2xl text-center text-lg mb-8 leading-relaxed">
-          Convierte videos y playlists de YouTube a MP3 de forma rápida,
-          gratuita y sin necesidad de registrarte. Solo pega el enlace, elige el
-          tipo de contenido, presiona <strong>“Convertir”</strong> y descarga el
-          audio en alta calidad.
+          Convierte videos y playlist de YouTube a MP3 de forma rápida, gratuita
+          y sin necesidad de registrarte. Solo pega el enlace, elige el tipo de
+          contenido, presiona <strong>“Convertir”</strong> y descarga el audio
+          en alta calidad.
         </p>
 
         <input
