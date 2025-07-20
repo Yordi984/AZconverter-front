@@ -15,7 +15,7 @@ export default function Input() {
       return;
     }
 
-    const URL = import.meta.env.VITE_API_URL;
+    const URL = import.meta.env.VITE_API;
     setLoading(true);
     try {
       const endpoint = type === "playlist" ? "/playlist" : "/download";
