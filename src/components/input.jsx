@@ -1,8 +1,9 @@
 import "../index.css";
 import axios from "axios";
 import { useState } from "react";
+import Header from "./header";
 
-export default function Input() {
+export default function App() {
   const [loading, setLoading] = useState(false);
   const [type, setType] = useState("video");
 
@@ -23,9 +24,7 @@ export default function Input() {
         `http://217.154.100.207:3000${endpoint}`,
         { url },
         {
-          headers: {
-            "Content-Type": "application/json",
-          },
+          headers: { "Content-Type": "application/json" },
           responseType: "blob",
         }
       );
@@ -53,6 +52,7 @@ export default function Input() {
       a.remove();
 
       window.URL.revokeObjectURL(downloadUrl);
+      if (urlInput) urlInput.value = "";
     } catch (error) {
       console.error(
         "❌ Error al descargar:",
@@ -74,7 +74,7 @@ export default function Input() {
             left: 0,
             width: "100vw",
             height: "100vh",
-            backgroundColor: "rgba(0, 0, 0, 0.85)",
+            backgroundColor: "rgba(0,0,0,0.85)",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
@@ -87,45 +87,72 @@ export default function Input() {
         </div>
       )}
 
-      <div className="flex flex-col justify-center items-center min-h-screen bg-black px-4">
-        <h1 className="text-3xl font-bold mb-6 text-white text-center">
-          Convertidor YouTube a MP3
-        </h1>
-        <p className="text-white max-w-2xl text-center text-lg mb-8 leading-relaxed">
-          Convierte videos y playlist de YouTube a MP3 de forma rápida, gratuita
-          y sin necesidad de registrarte. Solo pega el enlace, elige el tipo de
-          contenido, presiona <strong>“Convertir”</strong> y descarga el audio
-          en alta calidad.
-        </p>
+      <div className="flex flex-col min-h-screen bg-black">
+        {/* Header */}
+        <Header />
 
-        <input
-          id="url"
-          type="text"
-          placeholder="Pega aquí tu enlace de YouTube"
-          className="border bg-black text-white rounded-md px-4 py-2 w-full max-w-md"
-          disabled={loading}
-        />
+        {/* Contenido central */}
+        <main className="flex-1 flex flex-col items-center px-4 pt-12">
+          <h1 className="text-3xl font-bold mb-6 text-white text-center pt-16">
+            Convertidor YouTube a MP3
+          </h1>
+          <p className="text-white max-w-2xl text-center text-lg mb-8 leading-relaxed">
+            Convierte videos y playlist de YouTube a MP3 de forma rápida,
+            gratuita y sin necesidad de registrarte. Solo pega el enlace, elige
+            el tipo de contenido, presiona <strong>“Convertir”</strong> y
+            descarga el audio en alta calidad.
+          </p>
 
-        <div className="flex items-center gap-4 mt-4">
-          <select
-            className="px-4 py-2 bg-black text-white border rounded-md"
-            value={type}
-            onChange={(e) => setType(e.target.value)}
-            disabled={loading}
-          >
-            <option value="video">Video</option>
-            <option value="playlist">Playlist</option>
-          </select>
+          {/* Input y botón borrar */}
+          <div className="flex gap-2 justify-center mb-6 w-full max-w-md">
+            <input
+              id="url"
+              type="text"
+              placeholder="Pega aquí tu enlace de YouTube"
+              className="border bg-black text-white rounded-md px-4 py-2 w-full"
+              style={{
+                WebkitTextFillColor: "white",
+                WebkitBackgroundClip: "text",
+              }}
+              disabled={loading}
+            />
+            <button
+              className="border border-white text-white rounded-md hover:bg-white hover:text-black transition duration-200 px-3 py-2 "
+              onClick={() => {
+                const input = document.getElementById("url");
+                if (input) input.value = "";
+              }}
+            >
+              X
+            </button>
+          </div>
 
-          <button
-            onClick={Peticion}
-            className="px-6 py-2 border border-white text-white rounded-md hover:bg-white hover:text-black transition duration-200"
-            disabled={loading}
-          >
-            {loading ? "Procesando..." : "Convertir"}
-          </button>
-        </div>
-        <p className="mt-4 text-white text-center"> ©Yordi Madrigal</p>
+          {/* Select + Convertir */}
+          <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-14">
+            <select
+              className="px-4 py-2 bg-black text-white border rounded-md"
+              value={type}
+              onChange={(e) => setType(e.target.value)}
+              disabled={loading}
+            >
+              <option value="video">Canción</option>
+              <option value="playlist">Playlist</option>
+            </select>
+
+            <button
+              onClick={Peticion}
+              className="px-6 py-2 border border-white text-white rounded-md  hover:text-black transition duration-200 input-neon  hover:bg-white"
+              disabled={loading}
+            >
+              {loading ? "Procesando..." : "Convertir"}
+            </button>
+          </div>
+        </main>
+
+        {/* Footer siempre abajo */}
+        <footer className="flex justify-center text-white  bg-black mt-auto w-full p-14">
+          ©Yordi Madrigal
+        </footer>
       </div>
     </>
   );
