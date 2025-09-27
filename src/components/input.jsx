@@ -21,7 +21,7 @@ export default function App() {
       const endpoint = type === "playlist" ? "/playlist" : "/download";
 
       const response = await axios.post(
-        `http://217.154.100.207:3000${endpoint}`,
+        `http://localhost:3000${endpoint}`,
         { url },
         {
           headers: { "Content-Type": "application/json" },
@@ -157,3 +157,4 @@ export default function App() {
     </>
   );
 }
+
