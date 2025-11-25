@@ -5,19 +5,19 @@ export default function Header() {
     <div className="bg-black py-6 px-4">
       <nav className="flex flex-wrap justify-center gap-4 sm:gap-12">
         <a
-          href="#"
+          href="/"
           className="text-white text-sm sm:text-base hover:text-gray-300 transition"
         >
           Home
         </a>
         <a
-          href="#"
+          href="/redes"
           className="text-white text-sm sm:text-base hover:text-gray-300 transition"
         >
           Redes Sociales
         </a>
         <a
-          href="#"
+          href="/nosotros"
           className="text-white text-sm sm:text-base hover:text-gray-300 transition"
         >
           Nosotros
